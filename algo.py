@@ -29,7 +29,7 @@ def load_pdfs():
         path = os.path.join(folder, file)
         try:
             reader = PdfReader(path)
-            st.write(f"Loading {file} ({len(reader.pages)} pages)")
+           
             for i, page in enumerate(reader.pages, 1):
                 text = page.extract_text()
                 if text and text.strip():
@@ -40,7 +40,7 @@ def load_pdfs():
         except Exception as e:
             st.error(f"Error reading {file}: {e}")
     
-    st.success(f"Loaded {len(chunks)} pages from your PDFs")
+    
     return chunks
 
 # Load once at startup
@@ -112,7 +112,7 @@ for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
 # User input
-if user_input := st.chat_input("Ask me anything from your notes..."):
+if user_input := st.chat_input("Ask me any question on algorithm"):
     # Add user message to history and display it
     st.session_state.messages.append({"role": "user", "content": user_input})
     st.chat_message("user").write(user_input)
